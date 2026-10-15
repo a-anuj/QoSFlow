@@ -1,26 +1,55 @@
 {
   "hosts": {
-    "h1": {"mac": "00:00:00:00:00:01", "ip": "10.0.0.1", "switch": "s1", "port": 1, "group": "video"},
-    "h2": {"mac": "00:00:00:00:00:02", "ip": "10.0.0.2", "switch": "s1", "port": 2, "group": "download"},
-    "h3": {"mac": "00:00:00:00:00:03", "ip": "10.0.0.3", "switch": "s2", "port": 1, "group": "staff"},
-    "h4": {"mac": "00:00:00:00:00:04", "ip": "10.0.0.4", "switch": "s2", "port": 2, "group": "staff"},
-    "h5": {"mac": "00:00:00:00:00:05", "ip": "10.0.0.5", "switch": "s3", "port": 1, "group": "server"},
-    "h6": {"mac": "00:00:00:00:00:06", "ip": "10.0.0.6", "switch": "s3", "port": 2, "group": "guest"}
+    "h1":  {"mac": "00:00:00:00:00:01", "ip": "10.0.0.1",  "switch": "s1",  "port": 1, "group": "video"},
+    "h2":  {"mac": "00:00:00:00:00:02", "ip": "10.0.0.2",  "switch": "s1",  "port": 2, "group": "download"},
+    "h3":  {"mac": "00:00:00:00:00:03", "ip": "10.0.0.3",  "switch": "s2",  "port": 1, "group": "staff"},
+    "h4":  {"mac": "00:00:00:00:00:04", "ip": "10.0.0.4",  "switch": "s2",  "port": 2, "group": "staff"},
+    "h5":  {"mac": "00:00:00:00:00:05", "ip": "10.0.0.5",  "switch": "s3",  "port": 1, "group": "server"},
+    "h6":  {"mac": "00:00:00:00:00:06", "ip": "10.0.0.6",  "switch": "s3",  "port": 2, "group": "guest"},
+    "h7":  {"mac": "00:00:00:00:00:07", "ip": "10.0.0.7",  "switch": "s4",  "port": 1, "group": "staff"},
+    "h8":  {"mac": "00:00:00:00:00:08", "ip": "10.0.0.8",  "switch": "s4",  "port": 2, "group": "staff"},
+    "h9":  {"mac": "00:00:00:00:00:09", "ip": "10.0.0.9",  "switch": "s5",  "port": 1, "group": "staff"},
+    "h10": {"mac": "00:00:00:00:00:0a", "ip": "10.0.0.10", "switch": "s5",  "port": 2, "group": "staff"},
+    "h11": {"mac": "00:00:00:00:00:0b", "ip": "10.0.0.11", "switch": "s6",  "port": 1, "group": "guest"},
+    "h12": {"mac": "00:00:00:00:00:0c", "ip": "10.0.0.12", "switch": "s6",  "port": 2, "group": "guest"},
+    "h13": {"mac": "00:00:00:00:00:0d", "ip": "10.0.0.13", "switch": "s7",  "port": 1, "group": "guest"},
+    "h14": {"mac": "00:00:00:00:00:0e", "ip": "10.0.0.14", "switch": "s7",  "port": 2, "group": "guest"},
+    "h15": {"mac": "00:00:00:00:00:0f", "ip": "10.0.0.15", "switch": "s8",  "port": 1, "group": "server"},
+    "h16": {"mac": "00:00:00:00:00:10", "ip": "10.0.0.16", "switch": "s8",  "port": 2, "group": "server"},
+    "h17": {"mac": "00:00:00:00:00:11", "ip": "10.0.0.17", "switch": "s9",  "port": 1, "group": "server"},
+    "h18": {"mac": "00:00:00:00:00:12", "ip": "10.0.0.18", "switch": "s9",  "port": 2, "group": "server"},
+    "h19": {"mac": "00:00:00:00:00:13", "ip": "10.0.0.19", "switch": "s10", "port": 1, "group": "staff"},
+    "h20": {"mac": "00:00:00:00:00:14", "ip": "10.0.0.20", "switch": "s10", "port": 2, "group": "staff"}
   },
   "switches": {
-    "s1": {"dpid": 1},
-    "s2": {"dpid": 2},
-    "s3": {"dpid": 3}
+    "s1":  {"dpid": 1},
+    "s2":  {"dpid": 2},
+    "s3":  {"dpid": 3},
+    "s4":  {"dpid": 4},
+    "s5":  {"dpid": 5},
+    "s6":  {"dpid": 6},
+    "s7":  {"dpid": 7},
+    "s8":  {"dpid": 8},
+    "s9":  {"dpid": 9},
+    "s10": {"dpid": 10}
   },
   "links": [
-    {"src": "s1", "dst": "s2", "src_port": 3, "dst_port": 3, "bw": 10},
-    {"src": "s2", "dst": "s3", "src_port": 4, "dst_port": 3, "bw": 10}
+    {"src": "s1", "dst": "s2",  "src_port": 3, "dst_port": 3, "bw": 10},
+    {"src": "s2", "dst": "s3",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s3", "dst": "s4",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s4", "dst": "s5",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s5", "dst": "s6",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s6", "dst": "s7",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s7", "dst": "s8",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s8", "dst": "s9",  "src_port": 4, "dst_port": 3, "bw": 10},
+    {"src": "s9", "dst": "s10", "src_port": 4, "dst_port": 3, "bw": 10}
   ],
+  "primary_staff": ["h3", "h4"],
   "groups": {
-    "staff": ["h3", "h4"],
-    "server": ["h5"],
-    "guest": ["h6"],
-    "video": ["h1"],
+    "staff":    ["h3", "h4", "h7", "h8", "h9", "h10", "h19", "h20"],
+    "server":   ["h5", "h15", "h16", "h17", "h18"],
+    "guest":    ["h6", "h11", "h12", "h13", "h14"],
+    "video":    ["h1"],
     "download": ["h2"]
   },
   "critical_pairs": [
