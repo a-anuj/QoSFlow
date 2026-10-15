@@ -1,0 +1,39 @@
+{
+  "hosts": {
+    "h1": {"mac": "00:00:00:00:00:01", "ip": "10.0.0.1", "switch": "s1", "port": 1, "group": "video"},
+    "h2": {"mac": "00:00:00:00:00:02", "ip": "10.0.0.2", "switch": "s1", "port": 2, "group": "download"},
+    "h3": {"mac": "00:00:00:00:00:03", "ip": "10.0.0.3", "switch": "s2", "port": 1, "group": "staff"},
+    "h4": {"mac": "00:00:00:00:00:04", "ip": "10.0.0.4", "switch": "s2", "port": 2, "group": "staff"},
+    "h5": {"mac": "00:00:00:00:00:05", "ip": "10.0.0.5", "switch": "s3", "port": 1, "group": "server"},
+    "h6": {"mac": "00:00:00:00:00:06", "ip": "10.0.0.6", "switch": "s3", "port": 2, "group": "guest"}
+  },
+  "switches": {
+    "s1": {"dpid": 1},
+    "s2": {"dpid": 2},
+    "s3": {"dpid": 3}
+  },
+  "links": [
+    {"src": "s1", "dst": "s2", "src_port": 3, "dst_port": 3, "bw": 10},
+    {"src": "s2", "dst": "s3", "src_port": 4, "dst_port": 3, "bw": 10}
+  ],
+  "groups": {
+    "staff": ["h3", "h4"],
+    "server": ["h5"],
+    "guest": ["h6"],
+    "video": ["h1"],
+    "download": ["h2"]
+  },
+  "critical_pairs": [
+    {"src": "h1", "dst": "h3", "description": "video flow must stay up"},
+    {"src": "h3", "dst": "h5", "description": "at least one staff must reach server"}
+  ],
+  "queues": {
+    "port": "s1-eth3",
+    "switch": "s1",
+    "queue_ids": {
+      "0": {"name": "video_priority", "min_rate": 6000000, "max_rate": 9000000},
+      "1": {"name": "bulk_download",  "min_rate": 500000,  "max_rate": 2000000}
+    },
+    "link_max_rate": 10000000
+  }
+}
