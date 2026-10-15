@@ -138,9 +138,9 @@ class TestParseErrors:
             parse("dissable h4")
 
     def test_unknown_host_in_disable(self):
-        # h9 doesn't exist
+        # h99 doesn't exist (valid range is h1..h20)
         with pytest.raises(ValueError):
-            parse("disable h9")
+            parse("disable h99")
 
     def test_block_without_and(self):
         # "block h2" alone doesn't match block_pair (needs "and")

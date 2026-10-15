@@ -138,24 +138,32 @@ def _check_effect(intent_type: str, params: dict,
 
     elif intent_type == "block_from":
         sources = params["sources"]
-        target  = params["target"]
-        still = [s for s in sources if reachable(_G, s, target, all_rules)]
-        if still:
-            return False, (
-                f"Effect check failed: {', '.join(still)} can still reach {target}."
-            )
-        return True, "Effect verified: all sources are blocked from target."
+        targets = params.get("targets")
+        if not targets:
+            tgt = params.get("target")
+            targets = [tgt] if tgt else []
+        for target in targets:
+            still = [s for s in sources if reachable(_G, s, target, all_rules)]
+            if still:
+                return False, (
+                    f"Effect check failed: {', '.join(still)} can still reach {target}."
+                )
+        return True, "Effect verified: all sources are blocked from target(s)."
 
     elif intent_type == "allow_only_staff":
-        target    = params["target"]
+        targets = params.get("targets")
+        if not targets:
+            tgt = params.get("target")
+            targets = [tgt] if tgt else _GROUPS.get("server", ["h5"])
         staff_set = set(_GROUPS.get("staff", []))
-        non_staff = [h for h in _HOSTS if h != target and h not in staff_set]
-        still = [h for h in non_staff if reachable(_G, h, target, all_rules)]
-        if still:
-            return False, (
-                f"Effect check failed: non-staff hosts {still} can still reach {target}."
-            )
-        return True, "Effect verified: only staff can reach the target."
+        for target in targets:
+            non_staff = [h for h in _HOSTS if h != target and h not in staff_set]
+            still = [h for h in non_staff if reachable(_G, h, target, all_rules)]
+            if still:
+                return False, (
+                    f"Effect check failed: non-staff hosts {still} can still reach {target}."
+                )
+        return True, "Effect verified: only staff can reach the target server(s)."
 
     elif intent_type == "limit_download":
         mbps = params["mbps"]
@@ -174,7 +182,7 @@ def _check_server_safety(all_rules: list[dict]) -> tuple[bool, str]:
     """
     Check 2: at least one staff host can still reach h5 (the server).
     """
-    staff = _GROUPS.get("staff", [])
+    staff = _CFG.get("primary_staff", _GROUPS.get("staff", []))
     can_reach = [s for s in staff if reachable(_G, s, "h5", all_rules)]
     if not can_reach:
         return False, (

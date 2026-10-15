@@ -24,21 +24,21 @@ import re
 # Helpers
 # ---------------------------------------------------------------------------
 
-HOST_RE = r"h[1-6]"          # only the six hosts we know about
-ID_RE   = r"i-\d{4,}"        # intent id like i-0001
+HOST_RE = r"h(?:[1-9]|1[0-9]|20)\b"  # hosts h1 through h20
+ID_RE   = r"i-\d{4,}"                 # intent id like i-0001
 
 def _host(text: str) -> str:
     """Extract a single host name from a string, or raise ValueError."""
     m = re.search(HOST_RE, text, re.IGNORECASE)
     if not m:
-        raise ValueError(f"Expected a host name (h1–h6) but got: '{text}'")
+        raise ValueError(f"Expected a host name (h1–h20) but got: '{text}'")
     return m.group(0).lower()
 
 def _hosts(text: str) -> list[str]:
     """Extract ALL host names from a string."""
     found = re.findall(HOST_RE, text, re.IGNORECASE)
     if not found:
-        raise ValueError(f"No host names (h1–h6) found in: '{text}'")
+        raise ValueError(f"No host names (h1–h20) found in: '{text}'")
     return [h.lower() for h in found]
 
 def _mbps(text: str) -> float:
@@ -93,13 +93,13 @@ def _parse_remove(m):
 _PATTERNS = [
     # "block h3 and h4 from h5"  — must come before plain block_pair
     (re.compile(
-        r"block\s+(.+?)\s+from\s+(h[1-6])",
+        rf"block\s+(.+?)\s+from\s+({HOST_RE})",
         re.IGNORECASE),
      _parse_block_from),
 
     # "block h2 and h3"
     (re.compile(
-        r"block\s+(h[1-6])\s+and\s+(h[1-6])",
+        rf"block\s+({HOST_RE})\s+and\s+({HOST_RE})",
         re.IGNORECASE),
      _parse_block_pair),
 
@@ -123,7 +123,7 @@ _PATTERNS = [
 
     # "only staff can reach h5"
     (re.compile(
-        r"only\s+staff\s+can\s+reach\s+(h[1-6])",
+        rf"only\s+staff\s+can\s+reach\s+({HOST_RE})",
         re.IGNORECASE),
      _parse_allow_only_staff),
 

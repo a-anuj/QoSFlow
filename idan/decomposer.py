@@ -138,11 +138,15 @@ def _block_pair(params: dict) -> tuple[list, list]:
 
 def _block_from(params: dict) -> tuple[list, list]:
     sources = params["sources"]
-    target  = params["target"]
-    target_dpid = _dpid(_sw(target))
+    targets = params.get("targets")
+    if not targets:
+        target = params.get("target")
+        targets = [target] if target else []
     rules = []
-    for src in sources:
-        rules.append(_drop(target_dpid, eth_src=_mac(src), eth_dst=_mac(target)))
+    for tgt in targets:
+        target_dpid = _dpid(_sw(tgt))
+        for src in sources:
+            rules.append(_drop(target_dpid, eth_src=_mac(src), eth_dst=_mac(tgt)))
     return rules, []
 
 
@@ -151,16 +155,20 @@ def _allow_only_staff(params: dict) -> tuple[list, list]:
     Drop non-staff → target on the target's switch.
     Staff = hosts in the "staff" group. Everyone else is blocked.
     """
-    target      = params["target"]
-    target_dpid = _dpid(_sw(target))
+    targets = params.get("targets")
+    if not targets:
+        target = params.get("target")
+        targets = [target] if target else _GROUPS.get("server", ["h5"])
     staff_set   = set(_GROUPS.get("staff", []))
     rules = []
-    for host in _HOSTS:
-        if host == target:
-            continue  # don't block target from itself
-        if host in staff_set:
-            continue  # staff are allowed
-        rules.append(_drop(target_dpid, eth_src=_mac(host), eth_dst=_mac(target)))
+    for tgt in targets:
+        target_dpid = _dpid(_sw(tgt))
+        for host in _HOSTS:
+            if host == tgt:
+                continue  # don't block target from itself
+            if host in staff_set:
+                continue  # staff are allowed
+            rules.append(_drop(target_dpid, eth_src=_mac(host), eth_dst=_mac(tgt)))
     return rules, []
 
 
