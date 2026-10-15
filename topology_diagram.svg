@@ -1,110 +1,313 @@
-<svg width="1000" height="620" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
-  <rect width="1000" height="620" fill="#ffffff"/>
-
-  <text x="500" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a1a1a">QueueFlow — SDN Topology</text>
-  <text x="500" y="58" text-anchor="middle" font-size="13" fill="#555">3 switches, 6 hosts, RYU controller, bottleneck link s1-eth3 &lt;-&gt; s2-eth3 (10 Mbps)</text>
-
-  <!-- Controller -->
-  <rect x="410" y="80" width="180" height="50" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
-  <text x="500" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#4527a0">RYU Controller</text>
-  <text x="500" y="117" text-anchor="middle" font-size="11" fill="#4527a0">127.0.0.1 : 6633 (OpenFlow13)</text>
-
-  <!-- Controller lines to switches (dashed = control plane) -->
-  <line x1="480" y1="130" x2="180" y2="200" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="4,3"/>
-  <line x1="500" y1="130" x2="500" y2="200" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="4,3"/>
-  <line x1="520" y1="130" x2="820" y2="200" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="4,3"/>
-
-  <!-- Switch s1 -->
-  <rect x="100" y="200" width="160" height="55" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
-  <text x="180" y="222" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">s1</text>
-  <text x="180" y="240" text-anchor="middle" font-size="10" fill="#1565c0">dpid 1 · OpenFlow13</text>
-
-  <!-- Switch s2 -->
-  <rect x="420" y="200" width="160" height="55" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
-  <text x="500" y="222" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">s2</text>
-  <text x="500" y="240" text-anchor="middle" font-size="10" fill="#1565c0">dpid 2 · OpenFlow13</text>
-
-  <!-- Switch s3 -->
-  <rect x="740" y="200" width="160" height="55" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
-  <text x="820" y="222" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">s3</text>
-  <text x="820" y="240" text-anchor="middle" font-size="10" fill="#1565c0">dpid 3 · OpenFlow13</text>
-
-  <!-- s1 <-> s2 bottleneck link -->
-  <line x1="260" y1="227" x2="420" y2="227" stroke="#c62828" stroke-width="2.5"/>
-  <text x="340" y="215" text-anchor="middle" font-size="10" font-weight="bold" fill="#c62828">10 Mbps bottleneck (2ms delay)</text>
-  <text x="270" y="243" text-anchor="start" font-size="10" fill="#c62828">s1-eth3</text>
-  <text x="410" y="243" text-anchor="end" font-size="10" fill="#c62828">s2-eth3</text>
-
-  <!-- s2 <-> s3 link -->
-  <line x1="580" y1="227" x2="740" y2="227" stroke="#1565c0" stroke-width="1.5"/>
-  <text x="590" y="243" text-anchor="start" font-size="10" fill="#1565c0">s2-eth4</text>
-  <text x="730" y="243" text-anchor="end" font-size="10" fill="#1565c0">s3-eth3</text>
-
-  <!-- Host box style helper (repeated manually) -->
-
-  <!-- h1 -->
-  <rect x="30" y="340" width="110" height="55" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-  <text x="85" y="362" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h1</text>
-  <text x="85" y="378" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.1</text>
-  <text x="85" y="392" text-anchor="middle" font-size="9" fill="#2e7d32">UDP:5001 (video)</text>
-  <line x1="85" y1="340" x2="130" y2="255" stroke="#2e7d32" stroke-width="1.3"/>
-  <text x="45" y="330" font-size="9" fill="#2e7d32">h1-eth0</text>
-  <text x="125" y="270" font-size="9" fill="#2e7d32">s1-eth1</text>
-
-  <!-- h2 -->
-  <rect x="160" y="340" width="110" height="55" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-  <text x="215" y="362" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h2</text>
-  <text x="215" y="378" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.2</text>
-  <text x="215" y="392" text-anchor="middle" font-size="9" fill="#2e7d32">TCP:5002 (bulk)</text>
-  <line x1="215" y1="340" x2="200" y2="255" stroke="#2e7d32" stroke-width="1.3"/>
-  <text x="220" y="330" font-size="9" fill="#2e7d32">h2-eth0</text>
-  <text x="195" y="270" font-size="9" fill="#2e7d32">s1-eth2</text>
-
-  <!-- h3 -->
-  <rect x="350" y="340" width="110" height="55" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-  <text x="405" y="362" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h3</text>
-  <text x="405" y="378" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.3</text>
-  <text x="405" y="392" text-anchor="middle" font-size="9" fill="#2e7d32">receiver (both flows)</text>
-  <line x1="405" y1="340" x2="450" y2="255" stroke="#2e7d32" stroke-width="1.3"/>
-  <text x="365" y="330" font-size="9" fill="#2e7d32">h3-eth0</text>
-  <text x="445" y="270" font-size="9" fill="#2e7d32">s2-eth1</text>
-
-  <!-- h4 -->
-  <rect x="480" y="340" width="110" height="55" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-  <text x="535" y="362" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h4</text>
-  <text x="535" y="378" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.4</text>
-  <line x1="535" y1="340" x2="520" y2="255" stroke="#2e7d32" stroke-width="1.3"/>
-  <text x="540" y="330" font-size="9" fill="#2e7d32">h4-eth0</text>
-  <text x="515" y="270" font-size="9" fill="#2e7d32">s2-eth2</text>
-
-  <!-- h5 -->
-  <rect x="700" y="340" width="110" height="55" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-  <text x="755" y="362" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h5</text>
-  <text x="755" y="378" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.5</text>
-  <line x1="755" y1="340" x2="800" y2="255" stroke="#2e7d32" stroke-width="1.3"/>
-  <text x="715" y="330" font-size="9" fill="#2e7d32">h5-eth0</text>
-  <text x="795" y="270" font-size="9" fill="#2e7d32">s3-eth1</text>
-
-  <!-- h6 -->
-  <rect x="830" y="340" width="110" height="55" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-  <text x="885" y="362" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h6</text>
-  <text x="885" y="378" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.6</text>
-  <line x1="885" y1="340" x2="840" y2="255" stroke="#2e7d32" stroke-width="1.3"/>
-  <text x="890" y="330" font-size="9" fill="#2e7d32">h6-eth0</text>
-  <text x="835" y="270" font-size="9" fill="#2e7d32">s3-eth2</text>
-
-  <!-- Legend -->
-  <rect x="30" y="470" width="940" height="120" rx="8" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
-  <text x="50" y="495" font-size="13" font-weight="bold" fill="#1a1a1a">Legend</text>
-
-  <line x1="50" y1="515" x2="90" y2="515" stroke="#c62828" stroke-width="2.5"/>
-  <text x="98" y="519" font-size="11" fill="#333">Bottleneck link — bandwidth-capped at 10 Mbps (TCLink, 2ms delay). QoS queues live on s1-eth3.</text>
-
-  <line x1="50" y1="535" x2="90" y2="535" stroke="#1565c0" stroke-width="1.5"/>
-  <text x="98" y="539" font-size="11" fill="#333">Regular switch-to-switch or host-to-switch link, uncapped.</text>
-
-  <line x1="50" y1="555" x2="90" y2="555" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="4,3"/>
-  <text x="98" y="559" font-size="11" fill="#333">OpenFlow control channel (RYU &lt;-&gt; each switch).</text>
-
-  <text x="50" y="578" font-size="10.5" fill="#555">All hosts on subnet 10.0.0.0/24 · Port labels shown on both ends of every physical link, matching live 'ovs-vsctl show' output.</text>
+<svg width="1920" height="840" viewBox="0 0 1920 840" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpmNmE2MmFmYy03NjVmLTRjY2UtOGQ0Mi00NWUxYTdiZGYwMGIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaFwnTuD23q6SgBmwO8JoiLMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoyY2IzYmNjZi02M2I1LTRiYzctYmI1Yy0yZTcwMDI3ODIyZmJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoJu9dzh9cNnp/jWOGBr0GSgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggl3+D5fJ0bpa4PjRFWsBnHeF8VMMud3rVOwe/2UG4bWqkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaHwTGOW4yYPSKdvs92qtxsIAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAfxYdWORQrJqVkTvfZRgwPDZ7gDoPMgoQ14C3/3D7S/GRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjDZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmY2YTYyYWZjLTc2NWYtNGNjZS04ZDQyLTQ1ZTFhN2JkZjAwYi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmYyNGNhMDRmLWE0NDgtNGIxYS1hZmQ0LWRlNGJhZmYyYzYzNXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCXf4Pl8nRulrg+NEVawGcd4XxUwy53etU7B7/ZQbhtaqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJ9/NGrJMbVnjnEjqT96zzVjcL6WsqZ3orSGNdISkbOaiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg/gLOv0DOEHGrLXd3LuYGrjb9HKe9eERSPZNf8uJXK2J0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQHZRZODX6y/o0qOBCoiZGWvaZIhKMJz34CT3MpCaTDrtQUduf1ohpTR8sf51c/KHRTlOqZDUydijqPWGSHteHiM=</c2pa:manifest></metadata>
+<rect width="1920" height="840" fill="#ffffff"/>
+<text x="960" y="38" text-anchor="middle" font-size="26" font-weight="bold" fill="#1a1a1a">IDAN — SDN QoS Topology</text>
+<text x="960" y="62" text-anchor="middle" font-size="14" fill="#555">10 switches, 20 hosts, RYU controller, all inter-switch links 10 Mbps / 2 ms delay (OpenFlow 1.3), QoS queues on s1-eth3</text>
+<rect x="810" y="84" width="300" height="52" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+<text x="960" y="106" text-anchor="middle" font-size="14" font-weight="bold" fill="#4527a0">RYU Controller (c0)</text>
+<text x="960" y="124" text-anchor="middle" font-size="11" fill="#4527a0">127.0.0.1 : 6633 · RemoteController · OpenFlow13</text>
+<line x1="870.0" y1="136" x2="105" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="890.0" y1="136" x2="295" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="910.0" y1="136" x2="485" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="930.0" y1="136" x2="675" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="950.0" y1="136" x2="865" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="970.0" y1="136" x2="1055" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="990.0" y1="136" x2="1245" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="1010.0" y1="136" x2="1435" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="1030.0" y1="136" x2="1625" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="1050.0" y1="136" x2="1815" y2="214" stroke="#9575cd" stroke-width="1.2" stroke-dasharray="5,4"/>
+<rect x="15" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="105" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 1</text>
+<text x="105" y="562" text-anchor="middle" font-size="11" fill="#757575">Uplink &amp; Bulk</text>
+<rect x="205" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="295" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 2</text>
+<text x="295" y="562" text-anchor="middle" font-size="11" fill="#757575">Primary Branch</text>
+<rect x="395" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="485" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 3</text>
+<text x="485" y="562" text-anchor="middle" font-size="11" fill="#757575">Central DB &amp; Reception</text>
+<rect x="585" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="675" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 4</text>
+<text x="675" y="562" text-anchor="middle" font-size="11" fill="#757575">Engineering</text>
+<rect x="775" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="865" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 5</text>
+<text x="865" y="562" text-anchor="middle" font-size="11" fill="#757575">Finance</text>
+<rect x="965" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="1055" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 6</text>
+<text x="1055" y="562" text-anchor="middle" font-size="11" fill="#757575">Guest Wi-Fi</text>
+<rect x="1155" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="1245" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 7</text>
+<text x="1245" y="562" text-anchor="middle" font-size="11" fill="#757575">Visitor / IoT</text>
+<rect x="1345" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="1435" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 8</text>
+<text x="1435" y="562" text-anchor="middle" font-size="11" fill="#757575">App &amp; Backup</text>
+<rect x="1535" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="1625" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 9</text>
+<text x="1625" y="562" text-anchor="middle" font-size="11" fill="#757575">Web &amp; Mail</text>
+<rect x="1725" y="180" width="180" height="395" rx="10" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="1815" y="198" text-anchor="middle" font-size="11" font-weight="bold" fill="#757575">ZONE 10</text>
+<text x="1815" y="562" text-anchor="middle" font-size="11" fill="#757575">Executive Mgmt</text>
+<line x1="160" y1="246" x2="240" y2="246" stroke="#c62828" stroke-width="3"/>
+<text x="162" y="238" font-size="9" fill="#c62828">s1-eth3</text>
+<text x="238" y="258" text-anchor="end" font-size="9" fill="#c62828">s2-eth3</text>
+<text x="200" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#c62828">10 Mbps</text>
+<line x1="350" y1="246" x2="430" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="352" y="238" font-size="9" fill="#1565c0">s2-eth4</text>
+<text x="428" y="258" text-anchor="end" font-size="9" fill="#1565c0">s3-eth3</text>
+<text x="390" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="540" y1="246" x2="620" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="542" y="238" font-size="9" fill="#1565c0">s3-eth4</text>
+<text x="618" y="258" text-anchor="end" font-size="9" fill="#1565c0">s4-eth3</text>
+<text x="580" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="730" y1="246" x2="810" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="732" y="238" font-size="9" fill="#1565c0">s4-eth4</text>
+<text x="808" y="258" text-anchor="end" font-size="9" fill="#1565c0">s5-eth3</text>
+<text x="770" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="920" y1="246" x2="1000" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="922" y="238" font-size="9" fill="#1565c0">s5-eth4</text>
+<text x="998" y="258" text-anchor="end" font-size="9" fill="#1565c0">s6-eth3</text>
+<text x="960" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="1110" y1="246" x2="1190" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="1112" y="238" font-size="9" fill="#1565c0">s6-eth4</text>
+<text x="1188" y="258" text-anchor="end" font-size="9" fill="#1565c0">s7-eth3</text>
+<text x="1150" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="1300" y1="246" x2="1380" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="1302" y="238" font-size="9" fill="#1565c0">s7-eth4</text>
+<text x="1378" y="258" text-anchor="end" font-size="9" fill="#1565c0">s8-eth3</text>
+<text x="1340" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="1490" y1="246" x2="1570" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="1492" y="238" font-size="9" fill="#1565c0">s8-eth4</text>
+<text x="1568" y="258" text-anchor="end" font-size="9" fill="#1565c0">s9-eth3</text>
+<text x="1530" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<line x1="1680" y1="246" x2="1760" y2="246" stroke="#1565c0" stroke-width="2"/>
+<text x="1682" y="238" font-size="9" fill="#1565c0">s9-eth4</text>
+<text x="1758" y="258" text-anchor="end" font-size="9" fill="#1565c0">s10-eth3</text>
+<text x="1720" y="276" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565c0">10 Mbps</text>
+<text x="200" y="296" text-anchor="middle" font-size="10" font-weight="bold" fill="#c62828">BOTTLENECK</text>
+<rect x="50" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="105" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s1</text>
+<text x="105" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 1 · OF13</text>
+<rect x="27" y="330" width="156" height="90" rx="8" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.5"/>
+<text x="105" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">h1</text>
+<text x="105" y="368" text-anchor="middle" font-size="10" fill="#ef6c00">10.0.0.1</text>
+<text x="105" y="382" text-anchor="middle" font-size="8.5" fill="#ef6c00">00:00:00:00:00:01</text>
+<text x="105" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#e65100">Exec Video Call Sender</text>
+<text x="105" y="412" text-anchor="middle" font-size="9" fill="#ef6c00">group: video</text>
+<line x1="80" y1="276" x2="80" y2="330" stroke="#ef6c00" stroke-width="1.4"/>
+<text x="76" y="322" text-anchor="end" font-size="9" fill="#ef6c00">s1-eth1</text>
+<rect x="27" y="445" width="156" height="90" rx="8" fill="#fce4ec" stroke="#c2185b" stroke-width="1.5"/>
+<text x="105" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#880e4f">h2</text>
+<text x="105" y="483" text-anchor="middle" font-size="10" fill="#c2185b">10.0.0.2</text>
+<text x="105" y="497" text-anchor="middle" font-size="8.5" fill="#c2185b">00:00:00:00:00:02</text>
+<text x="105" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#880e4f">Bulk File Downloader</text>
+<text x="105" y="527" text-anchor="middle" font-size="9" fill="#c2185b">group: download</text>
+<path d="M135,276 V312 H193 V490 H183" fill="none" stroke="#c2185b" stroke-width="1.4"/>
+<text x="139" y="308" font-size="9" fill="#c2185b">s1-eth2</text>
+<rect x="240" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="295" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s2</text>
+<text x="295" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 2 · OF13</text>
+<rect x="217" y="330" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="295" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h3</text>
+<text x="295" y="368" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.3</text>
+<text x="295" y="382" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:03</text>
+<text x="295" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">Video Receiver / Staff</text>
+<text x="295" y="412" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<line x1="270" y1="276" x2="270" y2="330" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="266" y="322" text-anchor="end" font-size="9" fill="#2e7d32">s2-eth1</text>
+<rect x="217" y="445" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="295" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h4</text>
+<text x="295" y="483" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.4</text>
+<text x="295" y="497" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:04</text>
+<text x="295" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">Branch Staff Workstation</text>
+<text x="295" y="527" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<path d="M325,276 V312 H383 V490 H373" fill="none" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="329" y="308" font-size="9" fill="#2e7d32">s2-eth2</text>
+<rect x="430" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="485" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s3</text>
+<text x="485" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 3 · OF13</text>
+<rect x="407" y="330" width="156" height="90" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+<text x="485" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#311b92">h5</text>
+<text x="485" y="368" text-anchor="middle" font-size="10" fill="#5e35b1">10.0.0.5</text>
+<text x="485" y="382" text-anchor="middle" font-size="8.5" fill="#5e35b1">00:00:00:00:00:05</text>
+<text x="485" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#311b92">Core Database &amp; HR Server</text>
+<text x="485" y="412" text-anchor="middle" font-size="9" fill="#5e35b1">group: server</text>
+<line x1="460" y1="276" x2="460" y2="330" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="456" y="322" text-anchor="end" font-size="9" fill="#5e35b1">s3-eth1</text>
+<rect x="407" y="445" width="156" height="90" rx="8" fill="#eceff1" stroke="#546e7a" stroke-width="1.5"/>
+<text x="485" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#263238">h6</text>
+<text x="485" y="483" text-anchor="middle" font-size="10" fill="#546e7a">10.0.0.6</text>
+<text x="485" y="497" text-anchor="middle" font-size="8.5" fill="#546e7a">00:00:00:00:00:06</text>
+<text x="485" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#263238">Reception Guest Device</text>
+<text x="485" y="527" text-anchor="middle" font-size="9" fill="#546e7a">group: guest</text>
+<path d="M515,276 V312 H573 V490 H563" fill="none" stroke="#546e7a" stroke-width="1.4"/>
+<text x="519" y="308" font-size="9" fill="#546e7a">s3-eth2</text>
+<rect x="620" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="675" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s4</text>
+<text x="675" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 4 · OF13</text>
+<rect x="597" y="330" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="675" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h7</text>
+<text x="675" y="368" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.7</text>
+<text x="675" y="382" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:07</text>
+<text x="675" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">Lead Software Engineer</text>
+<text x="675" y="412" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<line x1="650" y1="276" x2="650" y2="330" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="646" y="322" text-anchor="end" font-size="9" fill="#2e7d32">s4-eth1</text>
+<rect x="597" y="445" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="675" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h8</text>
+<text x="675" y="483" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.8</text>
+<text x="675" y="497" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:08</text>
+<text x="675" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">QA Engineer / CI Runner</text>
+<text x="675" y="527" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<path d="M705,276 V312 H763 V490 H753" fill="none" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="709" y="308" font-size="9" fill="#2e7d32">s4-eth2</text>
+<rect x="810" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="865" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s5</text>
+<text x="865" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 5 · OF13</text>
+<rect x="787" y="330" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="865" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h9</text>
+<text x="865" y="368" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.9</text>
+<text x="865" y="382" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:09</text>
+<text x="865" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">Senior Accountant</text>
+<text x="865" y="412" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<line x1="840" y1="276" x2="840" y2="330" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="836" y="322" text-anchor="end" font-size="9" fill="#2e7d32">s5-eth1</text>
+<rect x="787" y="445" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="865" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h10</text>
+<text x="865" y="483" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.10</text>
+<text x="865" y="497" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:0a</text>
+<text x="865" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">Financial Auditor</text>
+<text x="865" y="527" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<path d="M895,276 V312 H953 V490 H943" fill="none" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="899" y="308" font-size="9" fill="#2e7d32">s5-eth2</text>
+<rect x="1000" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="1055" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s6</text>
+<text x="1055" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 6 · OF13</text>
+<rect x="977" y="330" width="156" height="90" rx="8" fill="#eceff1" stroke="#546e7a" stroke-width="1.5"/>
+<text x="1055" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#263238">h11</text>
+<text x="1055" y="368" text-anchor="middle" font-size="10" fill="#546e7a">10.0.0.11</text>
+<text x="1055" y="382" text-anchor="middle" font-size="8.5" fill="#546e7a">00:00:00:00:00:0b</text>
+<text x="1055" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#263238">Visitor Laptop (Conf. Room)</text>
+<text x="1055" y="412" text-anchor="middle" font-size="9" fill="#546e7a">group: guest</text>
+<line x1="1030" y1="276" x2="1030" y2="330" stroke="#546e7a" stroke-width="1.4"/>
+<text x="1026" y="322" text-anchor="end" font-size="9" fill="#546e7a">s6-eth1</text>
+<rect x="977" y="445" width="156" height="90" rx="8" fill="#eceff1" stroke="#546e7a" stroke-width="1.5"/>
+<text x="1055" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#263238">h12</text>
+<text x="1055" y="483" text-anchor="middle" font-size="10" fill="#546e7a">10.0.0.12</text>
+<text x="1055" y="497" text-anchor="middle" font-size="8.5" fill="#546e7a">00:00:00:00:00:0c</text>
+<text x="1055" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#263238">Visitor Smartphone</text>
+<text x="1055" y="527" text-anchor="middle" font-size="9" fill="#546e7a">group: guest</text>
+<path d="M1085,276 V312 H1143 V490 H1133" fill="none" stroke="#546e7a" stroke-width="1.4"/>
+<text x="1089" y="308" font-size="9" fill="#546e7a">s6-eth2</text>
+<rect x="1190" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="1245" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s7</text>
+<text x="1245" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 7 · OF13</text>
+<rect x="1167" y="330" width="156" height="90" rx="8" fill="#eceff1" stroke="#546e7a" stroke-width="1.5"/>
+<text x="1245" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#263238">h13</text>
+<text x="1245" y="368" text-anchor="middle" font-size="10" fill="#546e7a">10.0.0.13</text>
+<text x="1245" y="382" text-anchor="middle" font-size="8.5" fill="#546e7a">00:00:00:00:00:0d</text>
+<text x="1245" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#263238">External Contractor Laptop</text>
+<text x="1245" y="412" text-anchor="middle" font-size="9" fill="#546e7a">group: guest</text>
+<line x1="1220" y1="276" x2="1220" y2="330" stroke="#546e7a" stroke-width="1.4"/>
+<text x="1216" y="322" text-anchor="end" font-size="9" fill="#546e7a">s7-eth1</text>
+<rect x="1167" y="445" width="156" height="90" rx="8" fill="#eceff1" stroke="#546e7a" stroke-width="1.5"/>
+<text x="1245" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#263238">h14</text>
+<text x="1245" y="483" text-anchor="middle" font-size="10" fill="#546e7a">10.0.0.14</text>
+<text x="1245" y="497" text-anchor="middle" font-size="8.5" fill="#546e7a">00:00:00:00:00:0e</text>
+<text x="1245" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#263238">Smart TV / IoT Kiosk</text>
+<text x="1245" y="527" text-anchor="middle" font-size="9" fill="#546e7a">group: guest</text>
+<path d="M1275,276 V312 H1333 V490 H1323" fill="none" stroke="#546e7a" stroke-width="1.4"/>
+<text x="1279" y="308" font-size="9" fill="#546e7a">s7-eth2</text>
+<rect x="1380" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="1435" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s8</text>
+<text x="1435" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 8 · OF13</text>
+<rect x="1357" y="330" width="156" height="90" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+<text x="1435" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#311b92">h15</text>
+<text x="1435" y="368" text-anchor="middle" font-size="10" fill="#5e35b1">10.0.0.15</text>
+<text x="1435" y="382" text-anchor="middle" font-size="8.5" fill="#5e35b1">00:00:00:00:00:0f</text>
+<text x="1435" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#311b92">Internal App Server (ERP)</text>
+<text x="1435" y="412" text-anchor="middle" font-size="9" fill="#5e35b1">group: server</text>
+<line x1="1410" y1="276" x2="1410" y2="330" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="1406" y="322" text-anchor="end" font-size="9" fill="#5e35b1">s8-eth1</text>
+<rect x="1357" y="445" width="156" height="90" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+<text x="1435" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#311b92">h16</text>
+<text x="1435" y="483" text-anchor="middle" font-size="10" fill="#5e35b1">10.0.0.16</text>
+<text x="1435" y="497" text-anchor="middle" font-size="8.5" fill="#5e35b1">00:00:00:00:00:10</text>
+<text x="1435" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#311b92">Offsite Backup Storage</text>
+<text x="1435" y="527" text-anchor="middle" font-size="9" fill="#5e35b1">group: server</text>
+<path d="M1465,276 V312 H1523 V490 H1513" fill="none" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="1469" y="308" font-size="9" fill="#5e35b1">s8-eth2</text>
+<rect x="1570" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="1625" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s9</text>
+<text x="1625" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 9 · OF13</text>
+<rect x="1547" y="330" width="156" height="90" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+<text x="1625" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#311b92">h17</text>
+<text x="1625" y="368" text-anchor="middle" font-size="10" fill="#5e35b1">10.0.0.17</text>
+<text x="1625" y="382" text-anchor="middle" font-size="8.5" fill="#5e35b1">00:00:00:00:00:11</text>
+<text x="1625" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#311b92">Public Web Server (DMZ)</text>
+<text x="1625" y="412" text-anchor="middle" font-size="9" fill="#5e35b1">group: server</text>
+<line x1="1600" y1="276" x2="1600" y2="330" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="1596" y="322" text-anchor="end" font-size="9" fill="#5e35b1">s9-eth1</text>
+<rect x="1547" y="445" width="156" height="90" rx="8" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+<text x="1625" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#311b92">h18</text>
+<text x="1625" y="483" text-anchor="middle" font-size="10" fill="#5e35b1">10.0.0.18</text>
+<text x="1625" y="497" text-anchor="middle" font-size="8.5" fill="#5e35b1">00:00:00:00:00:12</text>
+<text x="1625" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#311b92">Corporate Mail Server</text>
+<text x="1625" y="527" text-anchor="middle" font-size="9" fill="#5e35b1">group: server</text>
+<path d="M1655,276 V312 H1713 V490 H1703" fill="none" stroke="#5e35b1" stroke-width="1.4"/>
+<text x="1659" y="308" font-size="9" fill="#5e35b1">s9-eth2</text>
+<rect x="1760" y="216" width="110" height="60" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="1815" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">s10</text>
+<text x="1815" y="258" text-anchor="middle" font-size="10" fill="#1565c0">dpid 10 · OF13</text>
+<rect x="1737" y="330" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="1815" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h19</text>
+<text x="1815" y="368" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.19</text>
+<text x="1815" y="382" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:13</text>
+<text x="1815" y="398" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">Executive Workstation</text>
+<text x="1815" y="412" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<line x1="1790" y1="276" x2="1790" y2="330" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="1786" y="322" text-anchor="end" font-size="9" fill="#2e7d32">s10-eth1</text>
+<rect x="1737" y="445" width="156" height="90" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="1815" y="467" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">h20</text>
+<text x="1815" y="483" text-anchor="middle" font-size="10" fill="#2e7d32">10.0.0.20</text>
+<text x="1815" y="497" text-anchor="middle" font-size="8.5" fill="#2e7d32">00:00:00:00:00:14</text>
+<text x="1815" y="513" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1b5e20">IT Admin Console</text>
+<text x="1815" y="527" text-anchor="middle" font-size="9" fill="#2e7d32">group: staff</text>
+<path d="M1845,276 V312 H1903 V490 H1893" fill="none" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="1849" y="308" font-size="9" fill="#2e7d32">s10-eth2</text>
+<text x="40" y="600" font-size="14" font-weight="bold" fill="#1a1a1a">Legend</text>
+<rect x="40" y="612" width="22" height="16" rx="3" fill="#fff3e0" stroke="#ef6c00"/>
+<text x="70" y="625" font-size="11" fill="#333">video</text>
+<rect x="145" y="612" width="22" height="16" rx="3" fill="#fce4ec" stroke="#c2185b"/>
+<text x="175" y="625" font-size="11" fill="#333">download</text>
+<rect x="250" y="612" width="22" height="16" rx="3" fill="#e8f5e9" stroke="#2e7d32"/>
+<text x="280" y="625" font-size="11" fill="#333">staff</text>
+<rect x="355" y="612" width="22" height="16" rx="3" fill="#ede7f6" stroke="#5e35b1"/>
+<text x="385" y="625" font-size="11" fill="#333">server</text>
+<rect x="460" y="612" width="22" height="16" rx="3" fill="#eceff1" stroke="#546e7a"/>
+<text x="490" y="625" font-size="11" fill="#333">guest</text>
+<rect x="565" y="612" width="22" height="16" rx="3" fill="#e3f2fd" stroke="#1565c0"/><text x="595" y="625" font-size="11" fill="#333">switch</text>
+<line x1="660" y1="620" x2="690" y2="620" stroke="#c62828" stroke-width="3"/><text x="697" y="625" font-size="11" fill="#333">bottleneck link</text>
+<line x1="815" y1="620" x2="845" y2="620" stroke="#1565c0" stroke-width="2"/><text x="852" y="625" font-size="11" fill="#333">10 Mbps trunk</text>
+<line x1="965" y1="620" x2="995" y2="620" stroke="#9575cd" stroke-dasharray="5,4"/><text x="1002" y="625" font-size="11" fill="#333">control plane (OpenFlow)</text>
+<rect x="40" y="650" width="610" height="170" rx="8" fill="#fafafa" stroke="#bdbdbd"/>
+<text x="54" y="672" font-size="13" font-weight="bold" fill="#1a1a1a">Host groups</text>
+<text x="54" y="693" font-size="11" fill="#333">video (1): h1 — VIP video sender, Priority Queue 0 on s1-eth3</text>
+<text x="54" y="710" font-size="11" fill="#333">download (1): h2 — bulk downloader, HTB Queue 1 (0.5–10 Mbps)</text>
+<text x="54" y="727" font-size="11" fill="#333">staff (8): h3, h4, h7, h8, h9, h10, h19, h20</text>
+<text x="54" y="744" font-size="11" fill="#333">server (5): h5, h15, h16, h17, h18</text>
+<text x="54" y="761" font-size="11" fill="#333">guest (5): h6, h11, h12, h13, h14</text>
+<text x="54" y="778" font-size="11" fill="#333">Addressing: 10.0.0.0/24 · MACs auto-set (00:00:00:00:00:NN)</text>
+<rect x="670" y="650" width="610" height="170" rx="8" fill="#fafafa" stroke="#bdbdbd"/>
+<text x="684" y="672" font-size="13" font-weight="bold" fill="#1a1a1a">Port &amp; link map</text>
+<text x="684" y="693" font-size="11" fill="#333">Hosts: s_k-eth1 → h(2k-1), s_k-eth2 → h(2k)</text>
+<text x="684" y="710" font-size="11" fill="#333">s1-eth3 ⇄ s2-eth3 : 10 Mbps, 2 ms (bottleneck, QoS queues)</text>
+<text x="684" y="727" font-size="11" fill="#333">s_k-eth4 ⇄ s_(k+1)-eth3 for k = 2…9 : 10 Mbps, 2 ms each</text>
+<text x="684" y="744" font-size="11" fill="#333">Chain: s1–s2–s3–s4–s5–s6–s7–s8–s9–s10</text>
+<text x="684" y="761" font-size="11" fill="#333">Critical flow: h1 → h3 via s1-eth3 → s2</text>
+<text x="684" y="778" font-size="11" fill="#333">Controller connects to all 10 switches (OpenFlow13)</text>
+<rect x="1300" y="650" width="580" height="170" rx="8" fill="#fafafa" stroke="#bdbdbd"/>
+<text x="1314" y="672" font-size="13" font-weight="bold" fill="#1a1a1a">Digital Twin safety rules</text>
+<text x="1314" y="693" font-size="11" fill="#333">1. Critical video flow h1 ↔ h3 can never be disabled</text>
+<text x="1314" y="710" font-size="11" fill="#333">2. At least one of h3/h4 must reach database h5</text>
+<text x="1314" y="727" font-size="11" fill="#333">3. Queue sanity: s1-eth3 bandwidth within 0.5–10 Mbps</text>
+<text x="1314" y="744" font-size="11" fill="#333">4. Group names (staff/servers/guests) auto-resolve to hosts</text>
+<text x="1314" y="761" font-size="11" fill="#333">Unsafe intents are rejected before reaching the network</text>
 </svg>
