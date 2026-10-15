@@ -41,6 +41,12 @@ from idan import twin as _twin
 from idan import store as _store
 from idan import controller_client as _client
 from idan import queue_tool as _queue_tool
+from idan import llm_parser as _llm_parser
+
+# ---------------------------------------------------------------------------
+# AI flag configuration
+# ---------------------------------------------------------------------------
+_USE_AI = False
 
 # ---------------------------------------------------------------------------
 # ANSI colours (fall back to no colour if not a tty)
@@ -59,11 +65,14 @@ CYAN   = lambda t: _c("96", t)
 BOLD   = lambda t: _c("1",  t)
 DIM    = lambda t: _c("2",  t)
 
-BANNER = f"""
-{BOLD('╔══════════════════════════════════════════════╗')}
-{BOLD('║')}  {CYAN('IDAN')} — Intent-Driven QoS & Access Control     {BOLD('║')}
-{BOLD('║')}  {DIM('Type an intent or "help" for examples.')}        {BOLD('║')}
-{BOLD('╚══════════════════════════════════════════════╝')}
+def get_banner() -> str:
+    mode_line = CYAN(f"AI ({_llm_parser.DEFAULT_MODEL})") if _USE_AI else DIM("Regex (Deterministic)")
+    return f"""
+{BOLD('╔════════════════════════════════════════════════════════╗')}
+{BOLD('║')}  {CYAN('IDAN')} — Intent-Driven QoS & Access Control             {BOLD('║')}
+{BOLD('║')}  Mode: {mode_line:<53} {BOLD('║')}
+{BOLD('║')}  {DIM('Type an intent or "help" for examples.')}                {BOLD('║')}
+{BOLD('╚════════════════════════════════════════════════════════╝')}
 """
 
 HELP_TEXT = f"""
@@ -141,7 +150,10 @@ def _handle_intent(text: str) -> None:
 
     # 1. Parse
     try:
-        parsed = _parser.parse(text)
+        if _USE_AI:
+            parsed = _llm_parser.parse(text, use_ai=True)
+        else:
+            parsed = _parser.parse(text)
     except ValueError as exc:
         print(RED(f"  Parse error: {exc}"))
         return
@@ -253,7 +265,15 @@ def _cmd_flows() -> None:
 # ---------------------------------------------------------------------------
 
 def run() -> None:
-    print(BANNER)
+    global _USE_AI
+    if "--ai" in sys.argv:
+        _USE_AI = True
+        if not (os.environ.get("GROQ_API_KEY") or os.environ.get("OPENAI_API_KEY")):
+            print(YELLOW("  ⚠️  Notice: --ai flag was passed, but neither GROQ_API_KEY nor OPENAI_API_KEY is set."))
+            print(YELLOW("     Run: export GROQ_API_KEY='your-key' to enable natural language translation."))
+            print(YELLOW("     Falling back to regex mode.\n"))
+
+    print(get_banner())
     while True:
         try:
             text = input(CYAN("idan> ")).strip()
