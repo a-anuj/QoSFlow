@@ -25,21 +25,34 @@ admin text
                              (also runs the same sync when a switch connects = recovery)
 ```
 
-### Topology
+### Topology (10 Switches, 20 Hosts)
 
 ```
 h1, h2 ──── s1 ══(10 Mbps)══ s2 ──── h3, h4
-                               │
-                              s3 ──── h5, h6
+                              │
+                             s3 ──── h5, h6
+                              │
+                             s4 ──── h7, h8
+                              │
+                             ...
+                              │
+                            s10 ──── h19, h20
 ```
 
-| Switch | Hosts | Groups |
-|--------|-------|--------|
-| s1     | h1, h2 | video (h1), download (h2) |
-| s2     | h3, h4 | staff (h3, h4) |
-| s3     | h5, h6 | server (h5), guest (h6) |
+> **Full Role Directory:** For detailed IP/MAC addresses, network zones, and real-world business roles for all 20 hosts, see [NETWORK_ROLES.md](file:///home/a-anuj/Desktop/setup_sdn_project/NETWORK_ROLES.md).
 
-MACs: `00:00:00:00:00:0N` for hN. IPs: `10.0.0.N`.
+| Zone | Switch | Hosts | Primary Groups | Real-World Role |
+|------|--------|-------|----------------|-----------------|
+| Branch Uplink | `s1` | `h1`, `h2` | `video` (`h1`), `download` (`h2`) | VIP Zoom Sender & Bulk Downloader |
+| Branch Office | `s2` | `h3`, `h4` | `staff` | Video Receiver & Local Employees |
+| Reception/DB | `s3` | `h5`, `h6` | `server` (`h5`), `guest` (`h6`) | Core Enterprise DB & Visitor Kiosk |
+| Engineering | `s4` | `h7`, `h8` | `staff` | Software & QA Engineers |
+| Finance | `s5` | `h9`, `h10` | `staff` | Accounting & Audit Team |
+| Guest Wi-Fi | `s6`, `s7` | `h11`..`h14` | `guest` | Visitor Phones & Contractor Laptops |
+| Datacenter | `s8`, `s9` | `h15`..`h18` | `server` | App, Backup, Web & Mail Servers |
+| Management | `s10` | `h19`, `h20` | `staff` | Executive Suite & IT Admin Console |
+
+MACs: `00:00:00:00:00:XX` (in hex). IPs: `10.0.0.X`.
 
 ---
 
